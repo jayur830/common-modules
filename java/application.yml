@@ -1,0 +1,122 @@
+spring:
+  profiles:
+    active: local
+#    active: dev
+#    active: prd
+  application:
+    name: {APP_NAME}
+  datasource:
+    username: {USERNAME}
+    password: {PASSWORD}
+    hikari:
+      connection-timeout: 1000
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        dialect: {DIALECT}
+        jdbc:
+          time_zone: Asia/Seoul
+  devtools:
+    restart:
+      log-condition-evaluation-delta: false
+  web:
+    resources:
+      static-locations: classpath:/static/
+logging:
+  level:
+    {PACKAGE}: info
+---
+server:
+  port: {PORT_LOCAL}
+  servlet:
+    session:
+      timeout: -1
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: {DRIVER_CLASS_NAME_LOCAL}
+    url: {JDBC_URL_LOCAL}
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  mail:
+    host: {SMTP_HOST_LOCAL}
+    port: {SMTP_PORT_LOCAL}
+    username: {SMTP_USERNAME_LOCAL}
+    password: {SMTP_PASSWORD_LOCAL}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+cors.allowed-domains: {CORS_DOMAINS_LOCAL}
+---
+server:
+  port: {PORT_DEV}
+  servlet:
+    session:
+      timeout: -1
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: {DRIVER_CLASS_NAME_DEV}
+    url: {JDBC_URL_DEV}
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  mail:
+    host: {SMTP_HOST_DEV}
+    port: {SMTP_PORT_DEV}
+    username: {SMTP_USERNAME_DEV}
+    password: {SMTP_PASSWORD_DEV}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+cors.allowed-domains: {CORS_DOMAINS_DEV}
+---
+server:
+  port: {PORT_PRD}
+  servlet:
+    session:
+      timeout: -1
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: {DRIVER_CLASS_NAME_PRD}
+    url: {JDBC_URL_PRD}
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  mail:
+    host: {SMTP_HOST_PRD}
+    port: {SMTP_PORT_PRD}
+    username: {SMTP_USERNAME_PRD}
+    password: {SMTP_PASSWORD_PRD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+cors.allowed-domains: {CORS_DOMAINS_PRD}
